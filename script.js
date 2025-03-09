@@ -123,8 +123,8 @@ function startGame() {
     
     guessMap.setView([20, 0], 2);
 
-    
-    score = 0;
+    // Removed resetting score to 0
+    // score = 0; 
     document.getElementById('score').innerText = `Score: ${score} | Streak: ${streak} 🔥 ${onFire ? "(ON FIRE!)" : ""}`;
 
     
