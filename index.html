@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Country Game</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Guess the Country!</h1>
+        <div id="country-name">Loading country...</div>
+        <div id="guess-map" class="map"></div>
+        <button id="submit-guess">Submit Guess</button>
+        <div id="result"></div>
+        <div id="score">Score: 0</div>
+        <div id="countdown" class="countdown" style="display: none;"></div>
+    </div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
