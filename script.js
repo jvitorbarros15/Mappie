@@ -11,8 +11,23 @@ let countdownControl;
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    initializeMap();
+    document.getElementById("start-game").addEventListener("click", function () {
+        document.getElementById("start-container").style.display = "none"; // Hide start button
+        document.getElementById("game-container").style.display = "block"; // Show game UI
+
+        let mapElement = document.getElementById("guess-map");
+        mapElement.classList.add("active"); // Unblur map
+
+        setTimeout(() => {
+            mapElement.style.filter = "none"; // Ensure blur is removed
+            mapElement.style.pointerEvents = "all"; // Allow interactions
+        }, 100); // Small delay to apply changes smoothly
+
+        initializeMap();
+    });
 });
+
+
 
 
 function initializeMap() {
@@ -64,7 +79,8 @@ async function fetchCountries() {
         countries = data
             .map(country => ({
                 name: country.name.common,
-                coordinates: country.latlng ? country.latlng : [0, 0]
+                coordinates: country.latlng ? country.latlng : [0, 0],
+                flag: country.flags.svg
             }))
             .filter(country => country.coordinates.length === 2);
 
@@ -84,7 +100,9 @@ function startGame() {
 
     // Pick a new random country
     currentCountry = countries[Math.floor(Math.random() * countries.length)];
-    document.getElementById('country-name').innerText = `Guess: ${currentCountry.name}`;
+    document.getElementById('country-name').innerHTML = `
+        <img src="${currentCountry.flag}" alt="Flag of ${currentCountry.name}" style="width: 30px; height: auto; vertical-align: middle; margin-right: 10px;">
+        ${currentCountry.name}`;
     document.getElementById('result').innerText = "";
     document.getElementById('score').innerText = `Score: ${score} | Streak: ${streak} 🔥 ${onFire ? "(ON FIRE!)" : ""}`;
 
