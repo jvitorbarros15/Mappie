@@ -8,7 +8,7 @@ let guessMap;
 let countdownTimer; 
 let timeLeft; 
 let countdownControl; 
-
+let canGuess = true; // New variable to control guessing
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("start-game").addEventListener("click", function () {
@@ -26,9 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
         initializeMap();
     });
 });
-
-
-
 
 function initializeMap() {
     guessMap = L.map('guess-map').setView([20, 0], 2);
@@ -51,7 +48,6 @@ function initializeMap() {
     };
     countdownControl.addTo(guessMap); 
 
-    
     guessMap.whenReady(() => {
         guessMap.on('click', function (e) {
             placeMarker(e.latlng);
@@ -106,7 +102,6 @@ function startGame() {
     document.getElementById('result').innerText = "";
     document.getElementById('score').innerText = `Score: ${score} | Streak: ${streak} 🔥 ${onFire ? "(ON FIRE!)" : ""}`;
 
-    
     if (userMarker) {
         guessMap.removeLayer(userMarker);
         userMarker = null;
@@ -120,19 +115,15 @@ function startGame() {
         circle = null;
     }
 
-    
     guessMap.setView([20, 0], 2);
-
-    // Removed resetting score to 0
-    // score = 0; 
     document.getElementById('score').innerText = `Score: ${score} | Streak: ${streak} 🔥 ${onFire ? "(ON FIRE!)" : ""}`;
-
     
     streak = 0;
 
     // Reset countdown
     clearInterval(countdownTimer);
     countdownControl.update(''); 
+    canGuess = true; // Allow guessing again
 }
 
 // Function to start the countdown for new guess
@@ -158,8 +149,21 @@ function startCountdown() {
 
 // Handle guess submission
 document.getElementById('submit-guess').addEventListener('click', () => {
+    if (!canGuess) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'No Guess!',
+            text: 'You can only guess once per round!',
+        });
+        return;
+    }
+
     if (!userMarker) {
-        alert("Please place a pin on the map before submitting your guess!");
+        Swal.fire({
+            icon: 'warning',
+            title: 'No Guess!',
+            text: 'Please place a pin on the map before submitting your guess!',
+        });
         return;
     }
 
@@ -221,6 +225,9 @@ document.getElementById('submit-guess').addEventListener('click', () => {
         fillOpacity: 0.4,
         radius: distance * 1000 // Convert km to meters for circle radius
     }).addTo(guessMap);
+
+    // Prevent further guesses until the next round
+    canGuess = false;
 
     // Start the countdown for the next guess
     startCountdown();
