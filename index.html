@@ -1,35 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mappie</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css">
-    <!-- Include SweetAlert2 CSS and JS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mappie</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Load JavaScript files as modules -->
+  <script src="firebase.js" type="module" defer></script>
+  <script src="script.js" type="module" defer></script>
+  <script src="login.js" type="module" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <div id="game-container">
-        <h1>Guess the Country!</h1>
-        <div id="country-name">Loading country...</div>
-        <div id="guess-map" class="map"></div>
-        <button id="submit-guess">Submit Guess</button>
-        <div id="result"></div>
-        
-        <!-- Start Button (UNCHANGED) -->
-        <div id="start-container">
-            <button id="start-game">Start Game</button>
-        </div>
+  <div id="auth-container">
+    <h2>Login</h2>
+    <input type="email" id="login-email" placeholder="Enter email" />
+    <input type="password" id="login-password" placeholder="Enter password" />
+    <button id="login-btn">Login</button>
+    <button id="google-login-btn">Login with Google</button>
+    <p>Don't have an account? <a href="#" id="signup-link">Sign up here</a></p>
+  </div>
 
-        <!-- Score & Streak -->
-        <div id="score">Score: 0</div>
-        
-        <div id="countdown" class="countdown" style="display: none;"></div>
+  <div id="signup-container" style="display: none;">
+    <h2>Sign Up</h2>
+    <input type="email" id="signup-email" placeholder="Enter email" />
+    <input type="password" id="signup-password" placeholder="Enter password" />
+    <button id="register-btn">Create Account</button>
+    <p>Already have an account? <a href="#" id="login-link">Back to login</a></p>
+  </div>
+
+  <div id="profile-container" style="display:none;">
+    <h2>Welcome, <span id="user-email"></span></h2>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <div id="game-container" style="display:none;">
+    <h1>Guess the Country!</h1>
+    <div id="country-name">Loading country...</div>
+    <div id="guess-map" class="map"></div>
+    <button id="submit-guess">Submit Guess</button>
+    <div id="result"></div>
+    <div id="start-container">
+      <button id="start-game">Start Game</button>
     </div>
+    <div id="score">Score: 0</div>
+    <div id="countdown" class="countdown" style="display: none;"></div>
+  </div>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="script.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
 </html>

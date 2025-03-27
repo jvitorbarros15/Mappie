@@ -1,25 +1,70 @@
+/* General body styling */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #eaf7fc;
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #e0f7fa;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    height: 100vh;
 }
 
+/* Welcome container styling */
+#profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px; /* Add spacing between the welcome message and the game */
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Welcome message */
+#profile-container h2 {
+    font-size: 20px;
+    color: #00796b;
+    margin-bottom: 10px;
+}
+
+/* Logout button styling */
+#logout-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #d32f2f;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#logout-btn:hover {
+    background-color: #b71c1c;
+}
+
+/* Game container styling */
 #game-container {
     text-align: center;
     width: 95%;
     max-width: 800px;
     padding: 20px;
     border: 2px solid #00796b;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Map styling */
 .map {
     width: 100%;
     height: 500px;
@@ -28,19 +73,31 @@ body {
     border-radius: 8px;
 }
 
+/* Buttons */
 button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
     background-color: #00796b;
-    color: white;
+    color: #ffffff;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #004d40;
+}
+
+/* Google login button */
+#google-login-btn {
+    background-color: #db4437;
+}
+
+#google-login-btn:hover {
+    background-color: #a33327;
 }
 
 #country-name {
@@ -96,7 +153,6 @@ button:hover {
     background-color: #e65100;
 }
 
-
 /* Blur effect ONLY on the map */
 #guess-map {
     filter: blur(5px);
@@ -110,5 +166,55 @@ button:hover {
     pointer-events: all;
 }
 
+/* Center the auth and signup containers */
+#auth-container, #signup-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 350px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Form heading */
+#auth-container h2, #signup-container h2 {
+    font-size: 24px;
+    color: #00796b;
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #b2dfdb;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Links */
+a {
+    color: #00796b;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 400px) {
+    #auth-container, #signup-container, #profile-container, #game-container {
+        width: 90%;
+        padding: 20px;
+    }
+}
 
 
